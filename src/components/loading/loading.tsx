@@ -1,3 +1,5 @@
+import './lib/loading.css';
+
 export const Loading = () => (
   <div>
     <div className="sk-folding-cube">

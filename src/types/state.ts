@@ -1,6 +1,6 @@
 import { AxiosInstance } from 'axios';
 import { store } from '../store';
-import { TCameraList } from './camera';
+import { TCamera, TCameraList } from './camera';
 import { Nullable } from 'vitest';
 
 export type AppDispatch = typeof store.dispatch;
@@ -16,4 +16,6 @@ export type TAsyncThunk = {
 export type InitialState = {
   cameras: Nullable<TCameraList>;
   isLoading: boolean;
+  isModalOpen: boolean;
+  selectedCamera: Nullable<TCamera>;
 }
