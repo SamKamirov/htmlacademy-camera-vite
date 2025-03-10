@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { getIsModalOpen } from '../../store/app-data/app-data-selectors';
 import { setModalIsOpen } from '../../store/action';
+import { BreadScrumps } from '../breadscrumps';
 
 export const Layout = () => {
   const dispatch = useAppDispatch();
@@ -39,6 +40,7 @@ export const Layout = () => {
   return (
     <div className="wrapper">
       <Header />
+      <BreadScrumps />
       <Outlet />
       <Footer />
     </div>

@@ -1,1 +1,1 @@
-export { BreadScrumps } from './breadscrumps.tsx';
+export { BreadScrumbs as BreadScrumps } from './breadscrumps.tsx';
