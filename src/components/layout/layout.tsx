@@ -1,15 +1,20 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { Header } from '../header';
 import { Footer } from '../footer';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { getIsModalOpen } from '../../store/app-data/app-data-selectors';
 import { setModalIsOpen } from '../../store/action';
-import { BreadScrumps } from '../breadscrumps';
+import { checkIsRoot } from './lib';
+import { BreadScrumbs } from '../breadscrumbs';
+import { Banner } from '../banner';
+import { UpBtnComponent } from '../up-btn-component';
 
 export const Layout = () => {
+  const location = useLocation();
+
   const dispatch = useAppDispatch();
-  const isModalOpen = useAppSelector(getIsModalOpen);
+  const isModalOpen = useAppSelector<boolean>(getIsModalOpen);
 
   const handleEscClick = (evt: KeyboardEvent) => {
     if (evt.key === 'Escape') {
@@ -40,8 +45,14 @@ export const Layout = () => {
   return (
     <div className="wrapper">
       <Header />
-      <BreadScrumps />
-      <Outlet />
+      <main>
+        {checkIsRoot(location.pathname) && <Banner />}
+        <div className='page-content'>
+          <BreadScrumbs />
+          <Outlet />
+        </div>
+      </main>
+      {!checkIsRoot(location.pathname) && <UpBtnComponent />}
       <Footer />
     </div>
   );

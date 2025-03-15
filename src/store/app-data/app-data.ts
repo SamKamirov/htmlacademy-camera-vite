@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { SliceNames } from '../../const';
-import { fetchCamera, fetchCameras } from '../../api/api-actions';
+import { fetchCamera, fetchCameraReviews, fetchCameras } from '../../api/api-actions';
 import { InitialState } from '../../types/state';
 import { setModalIsOpen, setSelectedCamera } from '../action';
 
@@ -8,7 +8,8 @@ const initialState: InitialState = {
   cameras: null,
   isLoading: false,
   isModalOpen: false,
-  selectedCamera: null
+  selectedCamera: null,
+  cameraReviews: null
 };
 
 const appData = createSlice({
@@ -46,6 +47,18 @@ const appData = createSlice({
       .addCase(fetchCamera.rejected, (state) => {
         state.isLoading = false;
         state.selectedCamera = null;
+      })
+      .addCase(fetchCameraReviews.pending, (state) => {
+        state.isLoading = true;
+        state.cameraReviews = null;
+      })
+      .addCase(fetchCameraReviews.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.cameraReviews = action.payload;
+      })
+      .addCase(fetchCameraReviews.rejected, (state) => {
+        state.isLoading = false;
+        state.cameraReviews = null;
       });
   },
 });

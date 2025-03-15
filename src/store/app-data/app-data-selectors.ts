@@ -9,3 +9,4 @@ export const getCameras = createSelector([selectCameras], (cameras) => cameras);
 export const getIsLoading = (state: State) => state[SliceNames.AppData].isLoading;
 export const getIsModalOpen = (state: State) => state[SliceNames.AppData].isModalOpen;
 export const getSelectedCamera = (state: State) => state[SliceNames.AppData].selectedCamera;
+export const getReviews = (state: State) => state[SliceNames.AppData].cameraReviews;

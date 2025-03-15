@@ -1,6 +1,7 @@
 export enum AppRoutes {
   Root = '/',
-  Camera = 'camera/:id'
+  Camera = 'camera/:id',
+  Everything = '*'
 }
 
 export enum PageTypes {

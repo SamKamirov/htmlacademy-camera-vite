@@ -6,11 +6,8 @@ type TCatalogCards = {
   cameras: TCameraList;
 }
 
-export const CatalogCards: FC<TCatalogCards> = ({ cameras }) => {
-  console.log();
-  return (
-    <div className="cards catalog__cards">
-      {cameras.map((camera) => <ProductCard camera={camera} key={camera.id} />)}
-    </div>
-  );
-};
+export const CatalogCards: FC<TCatalogCards> = ({ cameras }) => (
+  <div className="cards catalog__cards">
+    {cameras.map((camera) => <ProductCard camera={camera} key={camera.id} />)}
+  </div>
+);

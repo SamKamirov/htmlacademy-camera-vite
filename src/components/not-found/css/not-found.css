@@ -1,0 +1,9 @@
+.not-found-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.not-found__link {
+  text-decoration: underline;
+  color: #7575e2;
+}

@@ -2,6 +2,7 @@ import { AxiosInstance } from 'axios';
 import { store } from '../store';
 import { TCamera, TCameraList } from './camera';
 import { Nullable } from 'vitest';
+import { TReviewList } from './review';
 
 export type AppDispatch = typeof store.dispatch;
 
@@ -18,4 +19,5 @@ export type InitialState = {
   isLoading: boolean;
   isModalOpen: boolean;
   selectedCamera: Nullable<TCamera>;
+  cameraReviews: Nullable<TReviewList>;
 }
