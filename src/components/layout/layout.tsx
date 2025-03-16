@@ -9,6 +9,7 @@ import { checkIsRoot } from './lib';
 import { BreadScrumbs } from '../breadscrumbs';
 import { Banner } from '../banner';
 import { UpBtnComponent } from '../up-btn-component';
+import { Toast } from '../toast';
 
 export const Layout = () => {
   const location = useLocation();
@@ -54,6 +55,7 @@ export const Layout = () => {
       </main>
       {!checkIsRoot(location.pathname) && <UpBtnComponent />}
       <Footer />
+      <Toast />
     </div>
   );
 };

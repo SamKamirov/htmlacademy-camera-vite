@@ -1,3 +1,7 @@
 .no-scroll {
   overflow: hidden;
 }
+
+.custom-input__error.show {
+  opacity: 1;
+}

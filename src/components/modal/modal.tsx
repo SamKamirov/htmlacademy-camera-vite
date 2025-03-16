@@ -5,14 +5,25 @@ import { Loading } from '../loading';
 import { getModalClassName } from './lib';
 import { CloseModalButton } from '../close-modal-button';
 import './lib/modal.css';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { FormErrorElement } from './lib/form-error-element';
+
+const PHONE_PATTERN = /^(?:\+7|8)?9(?:\d{9})$/;
 
 type TModal = {
   isModalOpen: boolean;
 }
 
+type TFormInput = {
+  phone: string;
+}
+
 export const Modal: FC<TModal> = ({ isModalOpen }) => {
   const className = getModalClassName(isModalOpen);
   const camera = useAppSelector(getSelectedCamera);
+
+  const { register, handleSubmit, formState: { errors } } = useForm<TFormInput>();
+  const onSubmit: SubmitHandler<TFormInput> = (data) => data;
 
   if (!camera) {
     return <Loading />;
@@ -24,7 +35,7 @@ export const Modal: FC<TModal> = ({ isModalOpen }) => {
     <div className={`modal ${className}`}>
       <div className="modal__wrapper">
         <div className="modal__overlay" />
-        <div className="modal__content">
+        <form className="modal__content" onSubmit={handleSubmit(onSubmit)}>
           <p className="title title--h4">Свяжитесь со мной</p>
           <div className="basket-item basket-item--short">
             <div className="basket-item__img">
@@ -55,19 +66,23 @@ export const Modal: FC<TModal> = ({ isModalOpen }) => {
                   <use xlinkHref="#icon-snowflake" />
                 </svg>
               </span>
-              <input type="tel" name="user-tel" placeholder="Введите ваш номер" required />
+              <input type="tel" placeholder="Введите ваш номер"
+                {...register('phone', { required: true, pattern: PHONE_PATTERN })}
+                aria-invalid={errors.phone ? 'true' : 'false'}
+              />
             </label>
-            <p className="custom-input__error">Нужно указать номер</p>
+            {errors.phone?.type === 'required' && <FormErrorElement message='Нужно указать номер' />}
+            {errors.phone?.type === 'pattern' && <FormErrorElement message='Укажите правильный формат' />}
           </div>
           <div className="modal__buttons">
-            <button className="btn btn--purple modal__btn modal__btn--fit-width" type="button">
+            <button className="btn btn--purple modal__btn modal__btn--fit-width" type="submit">
               <svg width={24} height={16} aria-hidden="true">
                 <use xlinkHref="#icon-add-basket" />
               </svg>Заказать
             </button>
           </div>
           <CloseModalButton />
-        </div>
+        </form>
       </div>
     </div>
   );
