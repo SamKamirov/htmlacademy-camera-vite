@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import { useAppSelector } from '../../app/hooks';
 import { getSelectedCamera } from '../../store/app-data/app-data-selectors';
 import { Loading } from '../loading';
@@ -22,8 +22,16 @@ export const Modal: FC<TModal> = ({ isModalOpen }) => {
   const className = getModalClassName(isModalOpen);
   const camera = useAppSelector(getSelectedCamera);
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const { register, handleSubmit, formState: { errors } } = useForm<TFormInput>();
   const onSubmit: SubmitHandler<TFormInput> = (data) => data;
+
+  useEffect(() => {
+    if (isModalOpen && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isModalOpen]);
 
   if (!camera) {
     return <Loading />;
@@ -35,7 +43,7 @@ export const Modal: FC<TModal> = ({ isModalOpen }) => {
     <div className={`modal ${className}`}>
       <div className="modal__wrapper">
         <div className="modal__overlay" />
-        <form className="modal__content" onSubmit={handleSubmit(onSubmit)}>
+        <form className="modal__content" onSubmit={(event) => void handleSubmit(onSubmit)(event)}>
           <p className="title title--h4">Свяжитесь со мной</p>
           <div className="basket-item basket-item--short">
             <div className="basket-item__img">
@@ -69,6 +77,7 @@ export const Modal: FC<TModal> = ({ isModalOpen }) => {
               <input type="tel" placeholder="Введите ваш номер"
                 {...register('phone', { required: true, pattern: PHONE_PATTERN })}
                 aria-invalid={errors.phone ? 'true' : 'false'}
+                ref={inputRef}
               />
             </label>
             {errors.phone?.type === 'required' && <FormErrorElement message='Нужно указать номер' />}

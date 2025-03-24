@@ -21,6 +21,7 @@ type TabContentType = {
 
 export const TabContent: FC<TabContentType> = ({ selectedTab, camera }) => {
   const Component = getTabElementComponent(selectedTab);
+
   return (
     <div className="tabs__content">
       <Component camera={camera} />

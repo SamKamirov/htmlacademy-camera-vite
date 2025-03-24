@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { getIsModalOpen } from '../../store/app-data/app-data-selectors';
 import { setModalIsOpen } from '../../store/action';
 import { checkIsRoot } from './lib';
-import { BreadScrumbs } from '../breadscrumbs';
+import { Breadcrumbs } from '../breadscrumbs';
 import { Banner } from '../banner';
 import { UpBtnComponent } from '../up-btn-component';
 import { Toast } from '../toast';
@@ -24,7 +24,8 @@ export const Layout = () => {
   };
 
   const handleOverlayClick = (evt: MouseEvent) => {
-    if (evt.target.closest('.modal__overlay')) {
+    const target = evt.target as HTMLElement;
+    if (target.closest('.modal__overlay')) {
       dispatch(setModalIsOpen(false));
     }
   };
@@ -49,7 +50,7 @@ export const Layout = () => {
       <main>
         {checkIsRoot(location.pathname) && <Banner />}
         <div className='page-content'>
-          <BreadScrumbs />
+          <Breadcrumbs />
           <Outlet />
         </div>
       </main>

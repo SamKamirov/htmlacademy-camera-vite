@@ -13,3 +13,8 @@ export const store = configureStore({
       },
     }),
 });
+
+export const setupStore = (preloadedState?: Partial<ReturnType<typeof rootReducer>>) => configureStore({
+  reducer: rootReducer,
+  preloadedState
+});

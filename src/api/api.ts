@@ -1,6 +1,8 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import { SERVER_URL, TOKEN_NAME } from '../const';
 import { getToken } from '../services/token';
+import { notify } from '../utils/utils';
+import { TNotifyMessageTypes } from '../types/utils';
 
 export const createApi = (): AxiosInstance => {
   const api = axios.create({
@@ -22,7 +24,7 @@ export const createApi = (): AxiosInstance => {
     (response: AxiosResponse) => response,
     (error: AxiosError) => {
       if (error) {
-        console.log(error);
+        notify({ message: error.message, type: TNotifyMessageTypes.ERROR });
       }
     },
   );

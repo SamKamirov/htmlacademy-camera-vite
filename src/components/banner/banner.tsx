@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export const Banner = () => (
   <div className="banner">
     <picture>
@@ -21,9 +23,9 @@ export const Banner = () => (
       <span className="banner__text">
         Профессиональная камера от&nbsp;известного производителя
       </span>
-      <a className="btn" href="#">
+      <Link className="btn" to={''}>
         Подробнее
-      </a>
+      </Link>
     </p>
   </div>
 );

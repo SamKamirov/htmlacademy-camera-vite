@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AppRoutes } from '../const';
-import { Main } from '../pages/main';
 import { Layout } from '../components/layout';
 import { Product } from '../pages/product';
 import { NotFound } from '../components/not-found';
+import { Main } from '../pages/main';
 
 export const App = () => (
   <BrowserRouter>

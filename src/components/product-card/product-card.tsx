@@ -38,6 +38,6 @@ export const ProductCard: FC<TProductCard> = ({ camera }) => {
           Подробнее
         </Link>
       </div>
-    </div>
+    </div >
   );
 };

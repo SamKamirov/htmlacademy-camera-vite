@@ -9,6 +9,9 @@ export const TabButton: FC<TTabButon> = ({ tab, selectedTab, onClick }) => {
   const handleTabClick = () => onClick(tab);
 
   return (
-    <button className={`tabs__control ${isActive ? 'is-active' : ''}`} type="button" onClick={handleTabClick}>{tab}</button>
+    <button className={`tabs__control ${isActive ? 'is-active' : ''}`}
+      type="button" onClick={handleTabClick}
+    >{tab}
+    </button>
   );
 };
