@@ -1,0 +1,5 @@
+.form-search:focus-within .active {
+  appearance: auto;
+  visibility: visible;
+  opacity: 1;
+}

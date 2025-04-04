@@ -1,0 +1,9 @@
+.my-rating-class {
+  display: flex;
+  flex-direction: row;
+  max-width: 600px;
+}
+
+.product-card__rate svg:last-of-type {
+  margin-right: 5px;
+}

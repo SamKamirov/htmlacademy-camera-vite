@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { AppRoutes } from '../../const';
+import { SearchBar } from '../search-bar';
 
 export const Header = () => (
   <header className="header" id="header">
@@ -37,6 +38,7 @@ export const Header = () => (
           </li>
         </ul>
       </nav>
+      <SearchBar />
     </div>
   </header>
 );

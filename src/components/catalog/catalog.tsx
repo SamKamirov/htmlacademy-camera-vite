@@ -1,6 +1,8 @@
 import { useAppSelector } from '../../app/hooks';
 import { getCameras } from '../../store/app-data/app-data-selectors';
 import { CatalogCards } from '../catalog-cards';
+import { CatalogSort } from '../catalog-sort';
+import { Filters } from '../filters';
 import { Loading } from '../loading/loading';
 
 export const Catalog = () => {
@@ -15,10 +17,9 @@ export const Catalog = () => {
       <div className="container">
         <h1 className="title title--h2">Каталог фото- и видеотехники</h1>
         <div className="page-content__columns">
-          <div className="catalog__aside">
-            <img src="img/banner.png" />
-          </div>
+          <Filters />
           <div className="catalog__content">
+            <CatalogSort />
             <CatalogCards cameras={cameras} />
           </div>
         </div>
