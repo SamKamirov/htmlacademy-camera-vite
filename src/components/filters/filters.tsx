@@ -1,5 +1,5 @@
 export const Filters = () => {
-  console.log('test');
+  console.log();
   return (
     <div className="catalog__aside">
       <div className="catalog-filter">

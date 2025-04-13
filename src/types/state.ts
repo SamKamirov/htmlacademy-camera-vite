@@ -3,7 +3,7 @@ import { store } from '../store';
 import { TCamera, TCameraList } from './camera';
 import { Nullable } from 'vitest';
 import { TReviewList } from './review';
-import { TSortingTypes } from '../const';
+import { TOrderTypes, TSortingTypes } from '../const';
 
 export type AppDispatch = typeof store.dispatch;
 
@@ -23,6 +23,11 @@ export type InitialState = {
   cameraReviews: Nullable<TReviewList>;
 };
 
+export type TSorting = {
+    type: TSortingTypes,
+    order: TOrderTypes
+}
+
 export type UserProccessInitialState = {
-  sortingType: TSortingTypes[];
+  sorting: TSorting;
 };

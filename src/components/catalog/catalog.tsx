@@ -1,16 +1,21 @@
 import { useAppSelector } from '../../app/hooks';
 import { getCameras } from '../../store/app-data/app-data-selectors';
+import { getSorting } from '../../store/user-proccess/user-proccess-selectors';
 import { CatalogCards } from '../catalog-cards';
 import { CatalogSort } from '../catalog-sort';
 import { Filters } from '../filters';
 import { Loading } from '../loading/loading';
+import { sortCameras } from './lib';
 
 export const Catalog = () => {
   const cameras = useAppSelector(getCameras);
+  const sorting = useAppSelector(getSorting)
 
   if (!cameras) {
     return <Loading />;
   }
+
+  const sortedCameras = sortCameras([...cameras], sorting)
 
   return (
     <section className="catalog">
@@ -20,7 +25,7 @@ export const Catalog = () => {
           <Filters />
           <div className="catalog__content">
             <CatalogSort />
-            <CatalogCards cameras={cameras} />
+            <CatalogCards cameras={sortedCameras} />
           </div>
         </div>
       </div>

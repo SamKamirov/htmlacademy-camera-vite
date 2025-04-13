@@ -1,15 +1,15 @@
 import { FC } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { TSortingTypes } from '../../const';
-import { getSortingType } from '../../store/user-proccess/user-proccess-selectors';
+import { TOrderTypes, TSortingTypes } from '../../const';
+import { getSorting } from '../../store/user-proccess/user-proccess-selectors';
 import { setSortingType } from '../../store/action';
 
-type TCatalogSortingButton = {
-  type: TSortingTypes;
-  onClick: (type: TSortingTypes) => void;
+interface TCatalogSortingButton<T> {
+  type: T;
+  onClick: (type: T) => void;
 };
 
-const CatalogSortTypeButton: FC<TCatalogSortingButton> = ({ type, onClick }) => {
+const CatalogSortTypeButton: FC<TCatalogSortingButton<TSortingTypes>> = ({ type, onClick }) => {
   const isPriceSorting = type === TSortingTypes.ByPrice;
 
   const handleBtnClick = () => {
@@ -22,7 +22,7 @@ const CatalogSortTypeButton: FC<TCatalogSortingButton> = ({ type, onClick }) => 
         type="radio"
         id={`sort ${isPriceSorting ? 'Price' : 'Popular'}`}
         name="sort"
-        defaultChecked
+        defaultChecked={isPriceSorting ? true : false}
         onClick={handleBtnClick}
       />
       <label htmlFor={`sort ${isPriceSorting ? 'Price' : 'Popular'}`}>
@@ -32,19 +32,26 @@ const CatalogSortTypeButton: FC<TCatalogSortingButton> = ({ type, onClick }) => 
   );
 };
 
-const CatalogSortButton: FC<TCatalogSortingButton> = ({ type, onClick }) => {
+const CatalogOrderButton: FC<TCatalogSortingButton<TOrderTypes>> = ({ type, onClick }) => {
+  const isAsc = type === TOrderTypes.Ascending;
+
   const handleBtnClick = () => {
     onClick(type);
   };
+
+  const className = isAsc ? 'up' : 'down';
+
   return (
-    <div className="catalog-sort__btn catalog-sort__btn--down">
+    <div className={`catalog-sort__btn catalog-sort__btn--${className}`}>
       <input
         type="radio"
-        id="down"
+        id={className}
         name="sort-icon"
-        aria-label="По убыванию"
+        aria-label={isAsc ? "По возрастанию" : "По убыванию"}
+        onClick={handleBtnClick}
+        defaultChecked={isAsc ? true : false}
       />
-      <label htmlFor="down">
+      <label htmlFor={className}>
         <svg width={16} height={14} aria-hidden="true">
           <use xlinkHref="#icon-sort" />
         </svg>
@@ -55,11 +62,14 @@ const CatalogSortButton: FC<TCatalogSortingButton> = ({ type, onClick }) => {
 
 export const CatalogSort = () => {
   const dispatch = useAppDispatch();
-  const [...sortingType] = useAppSelector(getSortingType);
+  const sorting = useAppSelector(getSorting);
 
   const onSortBtnClick = (type: TSortingTypes) => {
-    sortingType[0] = type;
-    dispatch(setSortingType(sortingType));
+    dispatch(setSortingType({ ...sorting, type }));
+  };
+
+  const onOrderBtnClick = (order: TOrderTypes) => {
+    dispatch(setSortingType({ ...sorting, order}));
   };
 
   return (
@@ -68,30 +78,12 @@ export const CatalogSort = () => {
         <div className="catalog-sort__inner">
           <p className="title title--h5">Сортировать:</p>
           <div className="catalog-sort__type">
-            <CatalogSortTypeButton
-              type={TSortingTypes.ByPrice}
-              onClick={onSortBtnClick}
-            />
-            <CatalogSortTypeButton
-              type={TSortingTypes.ByPopularity}
-              onClick={onSortBtnClick}
-            />
+            <CatalogSortTypeButton type={TSortingTypes.ByPrice} onClick={onSortBtnClick} />
+            <CatalogSortTypeButton type={TSortingTypes.ByPopularity} onClick={onSortBtnClick} />
           </div>
           <div className="catalog-sort__order">
-
-            <div className="catalog-sort__btn catalog-sort__btn--down">
-              <input
-                type="radio"
-                id="down"
-                name="sort-icon"
-                aria-label="По убыванию"
-              />
-              <label htmlFor="down">
-                <svg width={16} height={14} aria-hidden="true">
-                  <use xlinkHref="#icon-sort" />
-                </svg>
-              </label>
-            </div>
+            <CatalogOrderButton type={TOrderTypes.Ascending} onClick={onOrderBtnClick} />
+            <CatalogOrderButton type={TOrderTypes.Descending} onClick={onOrderBtnClick} />
           </div>
         </div>
       </form>

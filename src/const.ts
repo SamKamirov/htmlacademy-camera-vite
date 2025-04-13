@@ -25,7 +25,11 @@ export enum SliceNames {
 
 export enum TSortingTypes {
   ByPrice = 'ByPrice',
-  ByPopularity = 'ByPopularity',
+  ByPopularity = 'ByPopularity'
+  
+}
+
+export enum TOrderTypes {
   Descending = 'Descending',
-  Ascending = 'Ascending',
+  Ascending = 'Ascending'
 }

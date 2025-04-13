@@ -1,3 +1,3 @@
 import { State } from '../../types/state';
 
-export const getSortingType = (state: State) => state.UserProccess.sortingType;
+export const getSorting = (state: State) => state.UserProccess.sorting;
