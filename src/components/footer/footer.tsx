@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AppRoutes } from '../../const';
+import { AppRoute } from '../../const';
 
 export const Footer = () => (
   <footer className="footer">
@@ -7,7 +7,7 @@ export const Footer = () => (
       <div className="footer__info">
         <Link
           className="footer__logo"
-          to={AppRoutes.Root}
+          to={AppRoute.Root}
           aria-label="Переход на главную"
         >
           <svg width={100} height={36} aria-hidden="true">
@@ -58,7 +58,7 @@ export const Footer = () => (
           <p className="footer__title">Навигация</p>
           <ul className="footer__list">
             <li className="footer__item">
-              <Link className="link" to={AppRoutes.Root}>
+              <Link className="link" to={AppRoute.Root}>
                 Каталог
               </Link>
             </li>

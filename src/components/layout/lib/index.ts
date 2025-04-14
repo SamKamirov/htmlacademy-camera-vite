@@ -1,3 +1,3 @@
-import { AppRoutes } from '../../../const';
+import { AppRoute } from '../../../const';
 
-export const checkIsRoot = (location: string) => location === AppRoutes.Root;
+export const checkIsRoot = (location: string) => location === AppRoute.Root;

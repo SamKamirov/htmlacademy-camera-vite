@@ -6,7 +6,7 @@ import { ProductRating } from '../product-rating';
 import { useAppDispatch } from '../../app/hooks';
 import { setModalIsOpen, setSelectedCamera } from '../../store/action';
 import { Link } from 'react-router-dom';
-import { PageTypes } from '../../const';
+import { PageType } from '../../const';
 
 type TProductCard = {
   camera: TCamera;
@@ -23,7 +23,7 @@ export const ProductCard: FC<TProductCard> = ({ camera }) => {
 
   return (
     <div className="product-card">
-      <ProductCardImg camera={camera} pageType={PageTypes.Main} />
+      <ProductCardImg camera={camera} pageType={PageType.Main} />
       <div className="product-card__info">
         <ProductRating camera={camera} />
         <p className="product-card__title">{name}</p>

@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import { TCamera } from '../../types/camera';
-import { PageTypes } from '../../const';
+import { PageType } from '../../const';
 import { getImageProps } from './lib';
 
 type TProductCardImg = {
   camera: TCamera;
-  pageType: PageTypes;
+  pageType: PageType;
 }
 
 export const ProductCardImg: FC<TProductCardImg> = ({ camera, pageType }) => {

@@ -1,13 +1,13 @@
 import { render } from '@testing-library/react';
 import { withHistory, withStore } from '../../utils/mock-component';
 import { Catalog } from '.';
-import { SliceNames } from '../../const';
+import { SliceName } from '../../const';
 import { fakeCamera } from '../../utils/mocks';
 
 describe('Component: Catalog', () => {
   it('should render correctly', () => {
     const mockState = {
-      [SliceNames.AppData]: {
+      [SliceName.AppData]: {
         cameras: [fakeCamera]
       }
     };

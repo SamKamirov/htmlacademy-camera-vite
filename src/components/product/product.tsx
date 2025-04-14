@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { TCamera } from '../../types/camera';
-import { PageTypes } from '../../const';
+import { PageType } from '../../const';
 import { ProductCardImg } from '../product-card-img';
 import { ProductRating } from '../product-rating';
 import { ProductTabs } from '../product-tabs';
@@ -16,7 +16,7 @@ export const ProductComponent: FC<TProductComponent> = ({ selectedCamera }) => {
     <div className="page-content__section">
       <section className="product">
         <div className="container">
-          <ProductCardImg camera={selectedCamera} pageType={PageTypes.Product} />
+          <ProductCardImg camera={selectedCamera} pageType={PageType.Product} />
           <div className="product__content">
             <h1 className="title title--h3">{name}</h1>
             <ProductRating camera={selectedCamera} />

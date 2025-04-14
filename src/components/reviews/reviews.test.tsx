@@ -2,12 +2,12 @@ import { render } from '@testing-library/react';
 import { Reviews } from '.';
 import { withStore } from '../../utils/mock-component';
 import { fakeReview } from '../../utils/mocks';
-import { SliceNames } from '../../const';
+import { SliceName } from '../../const';
 
 describe('Component: Reviews', () => {
   it('should render correctly', () => {
     const mockState = {
-      [SliceNames.AppData]: {
+      [SliceName.AppData]: {
         isLoading: false,
         cameraReviews: [fakeReview]
       }
@@ -21,7 +21,7 @@ describe('Component: Reviews', () => {
 
   it('should render Loading component if isLoading property equals true', () => {
     const mockState = {
-      [SliceNames.AppData]: {
+      [SliceName.AppData]: {
         isLoading: true
       }
     };
@@ -32,7 +32,7 @@ describe('Component: Reviews', () => {
 
   it('should render Loading component if cameraReviews`s property length equals zero', () => {
     const mockState = {
-      [SliceNames.AppData]: {
+      [SliceName.AppData]: {
         isLoading: true,
         cameraReviews: []
       }

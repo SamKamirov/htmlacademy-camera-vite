@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { SliceNames } from '../../const';
+import { SliceName } from '../../const';
 import { fetchCamera, fetchCameraReviews, fetchCameras } from '../../api/api-actions';
 import { InitialState } from '../../types/state';
 import { setModalIsOpen, setSelectedCamera } from '../action';
@@ -13,7 +13,7 @@ const initialState: InitialState = {
 };
 
 const appData = createSlice({
-  name: SliceNames.AppData,
+  name: SliceName.AppData,
   initialState,
   reducers: {},
   extraReducers(builder) {

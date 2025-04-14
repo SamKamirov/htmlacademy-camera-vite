@@ -1,11 +1,11 @@
-import { PageImageProps, PageTypes } from '../../../const';
+import { PageImageProps, PageType } from '../../../const';
 
-export const getImageProps = (pageType: PageTypes) => {
+export const getImageProps = (pageType: PageType) => {
   switch (pageType) {
-    case PageTypes.Main:
+    case PageType.Main:
       return PageImageProps.Main;
 
-    case PageTypes.Product:
+    case PageType.Product:
       return PageImageProps.Product;
   }
 };

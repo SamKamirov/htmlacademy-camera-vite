@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { TOrderTypes, TSortingTypes } from '../../const';
+import { OrderType, SortingType } from '../../const';
 import { getSorting } from '../../store/user-proccess/user-proccess-selectors';
 import { setSortingType } from '../../store/action';
 
@@ -9,8 +9,8 @@ interface TCatalogSortingButton<T> {
   onClick: (type: T) => void;
 };
 
-const CatalogSortTypeButton: FC<TCatalogSortingButton<TSortingTypes>> = ({ type, onClick }) => {
-  const isPriceSorting = type === TSortingTypes.ByPrice;
+const CatalogSortTypeButton: FC<TCatalogSortingButton<SortingType>> = ({ type, onClick }) => {
+  const isPriceSorting = type === SortingType.ByPrice;
 
   const handleBtnClick = () => {
     onClick(type);
@@ -32,8 +32,8 @@ const CatalogSortTypeButton: FC<TCatalogSortingButton<TSortingTypes>> = ({ type,
   );
 };
 
-const CatalogOrderButton: FC<TCatalogSortingButton<TOrderTypes>> = ({ type, onClick }) => {
-  const isAsc = type === TOrderTypes.Ascending;
+const CatalogOrderButton: FC<TCatalogSortingButton<OrderType>> = ({ type, onClick }) => {
+  const isAsc = type === OrderType.Ascending;
 
   const handleBtnClick = () => {
     onClick(type);
@@ -64,11 +64,11 @@ export const CatalogSort = () => {
   const dispatch = useAppDispatch();
   const sorting = useAppSelector(getSorting);
 
-  const onSortBtnClick = (type: TSortingTypes) => {
+  const onSortBtnClick = (type: SortingType) => {
     dispatch(setSortingType({ ...sorting, type }));
   };
 
-  const onOrderBtnClick = (order: TOrderTypes) => {
+  const onOrderBtnClick = (order: OrderType) => {
     dispatch(setSortingType({ ...sorting, order}));
   };
 
@@ -78,12 +78,12 @@ export const CatalogSort = () => {
         <div className="catalog-sort__inner">
           <p className="title title--h5">Сортировать:</p>
           <div className="catalog-sort__type">
-            <CatalogSortTypeButton type={TSortingTypes.ByPrice} onClick={onSortBtnClick} />
-            <CatalogSortTypeButton type={TSortingTypes.ByPopularity} onClick={onSortBtnClick} />
+            <CatalogSortTypeButton type={SortingType.ByPrice} onClick={onSortBtnClick} />
+            <CatalogSortTypeButton type={SortingType.ByPopularity} onClick={onSortBtnClick} />
           </div>
           <div className="catalog-sort__order">
-            <CatalogOrderButton type={TOrderTypes.Ascending} onClick={onOrderBtnClick} />
-            <CatalogOrderButton type={TOrderTypes.Descending} onClick={onOrderBtnClick} />
+            <CatalogOrderButton type={OrderType.Ascending} onClick={onOrderBtnClick} />
+            <CatalogOrderButton type={OrderType.Descending} onClick={onOrderBtnClick} />
           </div>
         </div>
       </form>

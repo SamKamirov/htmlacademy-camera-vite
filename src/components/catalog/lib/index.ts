@@ -1,4 +1,4 @@
-import { TOrderTypes, TSortingTypes } from "../../../const";
+import { OrderType, SortingType } from "../../../const";
 import { TCamera, TCameraList } from "../../../types/camera";
 import { TSorting } from "../../../types/state";
 
@@ -9,13 +9,13 @@ const sortByPriceDescending = (prev: TCamera, next: TCamera) => next.price - pre
 
 export const sortCameras = (cameras: TCameraList, sorting: TSorting) => {
     switch (true) {
-        case sorting.type === TSortingTypes.ByPopularity && sorting.order === TOrderTypes.Ascending:
+        case sorting.type === SortingType.ByPopularity && sorting.order === OrderType.Ascending:
             return cameras.sort(sortByPopularityAscending)
-        case sorting.type === TSortingTypes.ByPopularity && sorting.order === TOrderTypes.Descending:
+        case sorting.type === SortingType.ByPopularity && sorting.order === OrderType.Descending:
             return cameras.sort(sortByPopularityDescending)
-        case sorting.type === TSortingTypes.ByPrice && sorting.order === TOrderTypes.Ascending:
+        case sorting.type === SortingType.ByPrice && sorting.order === OrderType.Ascending:
             return cameras.sort(sortByPriceAscending)
-        case sorting.type === TSortingTypes.ByPrice && sorting.order === TOrderTypes.Descending:
+        case sorting.type === SortingType.ByPrice && sorting.order === OrderType.Descending:
             return cameras.sort(sortByPriceDescending)
         default:
             return cameras;
