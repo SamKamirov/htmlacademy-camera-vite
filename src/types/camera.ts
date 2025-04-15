@@ -5,14 +5,26 @@ export enum TCameraType {
 	Film = 'Плёночная',
 }
 
+export enum TCameraCategory {
+	Videocamera = 'Видеокамера',
+	Photocamera = 'Фотоаппарат',
+}
+
+export enum TCameraLevel {
+	Zero = 'Нулевой',
+	NonProfessional = 'Любительский',
+	Professional = 'Профессиональный',
+	All = 'Все',
+}
+
 export type TCamera = {
 	id: number;
 	name: string;
 	vendorCode: string;
 	type: TCameraType;
-	category: 'Видеокамера' | 'Фотоаппарат';
+	category: TCameraCategory;
 	description: string;
-	level: 'Нулевой' | 'Любительский' | 'Профессиональный';
+	level: TCameraLevel;
 	price: number;
 	rating: number;
 	reviewCount: number;

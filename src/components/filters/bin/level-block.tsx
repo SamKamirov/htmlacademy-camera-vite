@@ -1,28 +1,34 @@
+import { MouseEventHandler } from 'react';
+import { useAppDispatch } from '../../../app/hooks';
+import { setLevelFilter } from '../../../store/action';
+import { TCameraLevel } from '../../../types/camera';
+import { FilterInput } from '../../filter-input';
+
 export const LevelBlock = () => {
-    return (
-        <fieldset className="catalog-filter__block">
-            <legend className="title title--h5">Уровень</legend>
-            <div className="custom-checkbox catalog-filter__item">
-                <label>
-                    <input type="checkbox" name="zero" defaultChecked />
-                    <span className="custom-checkbox__icon" />
-                    <span className="custom-checkbox__label">Нулевой</span>
-                </label>
-            </div>
-            <div className="custom-checkbox catalog-filter__item">
-                <label>
-                    <input type="checkbox" name="non-professional" />
-                    <span className="custom-checkbox__icon" />
-                    <span className="custom-checkbox__label">Любительский</span>
-                </label>
-            </div>
-            <div className="custom-checkbox catalog-filter__item">
-                <label>
-                    <input type="checkbox" name="professional" />
-                    <span className="custom-checkbox__icon" />
-                    <span className="custom-checkbox__label">Профессиональный</span>
-                </label>
-            </div>
-        </fieldset>
-    )
-}
+	const dispatch = useAppDispatch();
+
+	const handleLevelClick: MouseEventHandler<HTMLFieldSetElement> = (e) => {
+		dispatch(setLevelFilter((e.target as HTMLInputElement).value));
+	};
+
+	return (
+		<fieldset className='catalog-filter__block' onChange={handleLevelClick}>
+			<legend className='title title--h5'>Уровень</legend>
+			<FilterInput
+				title={TCameraLevel.Zero}
+				type='checkbox'
+				value={TCameraLevel.Zero}
+			/>
+			<FilterInput
+				title={TCameraLevel.NonProfessional}
+				type='checkbox'
+				value={TCameraLevel.NonProfessional}
+			/>
+			<FilterInput
+				title={TCameraLevel.Professional}
+				type='checkbox'
+				value={TCameraLevel.Professional}
+			/>
+		</fieldset>
+	);
+};

@@ -34,7 +34,7 @@ const userProccess = createSlice({
 				state.sorting = action.payload;
 			})
 			.addCase(setPriceFilter, (state, action) => {
-				state.filters.equipmentFilters.category = action.payload;
+				console.log(action.payload);
 			})
 			.addCase(setCategoryFilter, (state, action) => {
 				state.filters.equipmentFilters.category = action.payload;
@@ -50,7 +50,14 @@ const userProccess = createSlice({
 				}
 			})
 			.addCase(setLevelFilter, (state, action) => {
-				state.filters.equipmentFilters.category = action.payload;
+				if (!state.filters.equipmentFilters.level.includes(action.payload)) {
+					state.filters.equipmentFilters.level.push(action.payload);
+				} else {
+					const index = state.filters.equipmentFilters.level.indexOf(
+						action.payload
+					);
+					state.filters.equipmentFilters.level.splice(index, 1);
+				}
 			});
 	},
 });
