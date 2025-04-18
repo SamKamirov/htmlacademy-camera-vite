@@ -4,7 +4,8 @@ import {
 	setCameraTypeFilter,
 	setCategoryFilter,
 	setLevelFilter,
-	setPriceFilter,
+	setMaxPriceFilter,
+	setMinPriceFilter,
 	setSortingType,
 } from '../action';
 import { UserProccessInitialState } from '../../types/state';
@@ -15,7 +16,7 @@ const initialState: UserProccessInitialState = {
 		order: OrderType.Ascending,
 	},
 	filters: {
-		priceFilter: [0, 0],
+		priceFilter: { minPrice: 0, maxPrice: 0 },
 		equipmentFilters: {
 			category: Filter.Category.All,
 			cameraType: [],
@@ -33,8 +34,11 @@ const userProccess = createSlice({
 			.addCase(setSortingType, (state, action) => {
 				state.sorting = action.payload;
 			})
-			.addCase(setPriceFilter, (state, action) => {
-				console.log(action.payload);
+			.addCase(setMinPriceFilter, (state, action) => {
+				state.filters.priceFilter.minPrice = action.payload;
+			})
+			.addCase(setMaxPriceFilter, (state, action) => {
+				state.filters.priceFilter.maxPrice = action.payload;
 			})
 			.addCase(setCategoryFilter, (state, action) => {
 				state.filters.equipmentFilters.category = action.payload;

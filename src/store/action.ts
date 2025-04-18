@@ -10,4 +10,5 @@ export const setSortingType = createAction<TSorting>('user/setSortingType');
 export const setCategoryFilter = createAction<string>('user/setCategoryFilter');
 export const setCameraTypeFilter = createAction<string>('user/setCameraTypeFilter');
 export const setLevelFilter = createAction<string>('user/setLevelFilter');
-export const setPriceFilter = createAction<string>('user/setPriceFilter');
+export const setMinPriceFilter = createAction<number>('user/setMinPriceFilter');
+export const setMaxPriceFilter = createAction<number>('user/setMaxPriceFilter');

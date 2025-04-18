@@ -35,7 +35,7 @@ export type TSorting = {
 };
 
 export type TFilters = {
-	priceFilter: [number, number];
+	priceFilter: { minPrice: number; maxPrice: number };
 	equipmentFilters: {
 		category: string;
 		cameraType: string[];

@@ -17,6 +17,11 @@ export enum TCameraLevel {
 	All = 'Все',
 }
 
+export type TPriceFilter = {
+	minPrice: number;
+	maxPrice: number;
+};
+
 export type TCamera = {
 	id: number;
 	name: string;

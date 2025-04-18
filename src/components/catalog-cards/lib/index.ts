@@ -1,12 +1,9 @@
 import { Filter, SortingType } from '../../../const';
-import { TCameraLevel, TCameraList } from '../../../types/camera';
+import { TCameraList } from '../../../types/camera';
 import { TFilters } from '../../../types/state';
 
 const PRIMARY_SORT_INDEX = 0;
 const SECONDARY_SORT_INDEX = 0;
-
-const PRICE_START_INDEX = 0;
-const PRICE_END_INDEX = 0;
 
 type TSortCameras = {
 	cameras: TCameraList;
@@ -33,12 +30,12 @@ export const sortCameras = ({ cameras, sortingType }: TSortCameras) => {
 
 export const applyFilters = ({ cameras, filters }: ApplyFiltersProps) => {
 	const {
-		priceFilter,
+		priceFilter: { minPrice, maxPrice },
 		equipmentFilters: { cameraType, category, level },
 	} = filters;
 
 	return cameras.filter((item) => {
-		if (priceFilter[PRICE_END_INDEX] === 0 && priceFilter[PRICE_START_INDEX] != 0)
+		if (!(item.price >= minPrice) || !(item.price <= maxPrice || maxPrice === 0))
 			return false;
 		if (category != item.category && category != Filter.Category.All) return false;
 		if (!cameraType.includes(item.type) && cameraType.length > 0) return false;
