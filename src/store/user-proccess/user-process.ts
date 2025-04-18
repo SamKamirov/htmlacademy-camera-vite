@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { SliceName, OrderType, SortingType, Filter } from '../../const';
 import {
+	resetFilters,
 	setCameraTypeFilter,
 	setCategoryFilter,
 	setLevelFilter,
@@ -62,6 +63,9 @@ const userProccess = createSlice({
 					);
 					state.filters.equipmentFilters.level.splice(index, 1);
 				}
+			})
+			.addCase(resetFilters, (state) => {
+				state.filters = initialState.filters;
 			});
 	},
 });

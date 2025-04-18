@@ -12,3 +12,4 @@ export const setCameraTypeFilter = createAction<string>('user/setCameraTypeFilte
 export const setLevelFilter = createAction<string>('user/setLevelFilter');
 export const setMinPriceFilter = createAction<number>('user/setMinPriceFilter');
 export const setMaxPriceFilter = createAction<number>('user/setMaxPriceFilter');
+export const resetFilters = createAction('user/resetFilters');
