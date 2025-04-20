@@ -28,6 +28,7 @@ export const ProductRating: FC<TProductRating> = ({ camera }) => {
         fillIcon={StarRatingIcon}
         emptyIcon={EmptyRatingIcon}
         allowHover={false}
+        readonly
       />
 
       <p className="visually-hidden">Рейтинг: {rating}</p>
