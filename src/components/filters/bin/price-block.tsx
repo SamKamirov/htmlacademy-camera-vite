@@ -1,19 +1,39 @@
-import { ChangeEventHandler } from 'react';
-import { useAppDispatch } from '../../../app/hooks';
-import { setMaxPriceFilter, setMinPriceFilter } from '../../../store/action';
+import { ChangeEventHandler, FormEventHandler, useEffect, useRef, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { getPriceFilter } from '../../../store/user-proccess/user-proccess-selectors';
+import { setPriceFilter } from '../../../store/action';
+
+const TIMER_DELAY = 400;
 
 export const PriceBlock = () => {
   const dispatch = useAppDispatch();
+  const {minPrice, maxPrice} = useAppSelector(getPriceFilter);
+
+  const [minStatePrice, setMinPrice] = useState(minPrice);
+  const [maxStatePrice, setMaxPrice] = useState(maxPrice);
 
   const handleMinPriceChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const price = Number(e.target.value);
-    dispatch(setMinPriceFilter(price));
+    setMinPrice(price);
   };
 
   const handleMaxPriceChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const price = Number(e.target.value);
-    dispatch(setMaxPriceFilter(price));
+    setMaxPrice(price);
   };
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      if (minStatePrice && maxStatePrice && maxStatePrice < minStatePrice) {
+        setMaxPrice(minStatePrice);
+        setMinPrice(maxStatePrice);
+      } else {
+        dispatch(setPriceFilter({minPrice: minStatePrice, maxPrice: maxStatePrice}));
+      }
+    }, TIMER_DELAY);
+
+    return () => clearTimeout(timerId);
+  }, [minPrice, maxPrice, setMaxPrice, setMinPrice, dispatch, minStatePrice, maxStatePrice]);
 
   return (
     <fieldset className='catalog-filter__block'>
@@ -25,6 +45,7 @@ export const PriceBlock = () => {
               type='number'
               name='price'
               placeholder='от'
+              value={minStatePrice}
               onChange={handleMinPriceChange}
             />
           </label>
@@ -35,6 +56,7 @@ export const PriceBlock = () => {
               type='number'
               name='priceUp'
               placeholder='до'
+              value={minStatePrice}
               onChange={handleMaxPriceChange}
             />
           </label>

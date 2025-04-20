@@ -1,8 +1,4 @@
-import { CategoryBlock } from './bin/category-block';
-import { LevelBlock } from './bin/level-block';
-import { PriceBlock } from './bin/price-block';
-import { ResetBtn } from './bin/reset-btn';
-import { TypeBlock } from './bin/type-block';
+import { CategoryBlock, LevelBlock, PriceBlock, ResetBtn, TypeBlock } from './bin';
 
 export const Filters = () => (
   <div className='catalog__aside'>
