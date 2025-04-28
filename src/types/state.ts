@@ -1,12 +1,6 @@
 import { AxiosInstance } from 'axios';
 import { store } from '../store';
-import {
-	TCamera,
-	TCameraCategory,
-	TCameraLevel,
-	TCameraList,
-	TCameraType,
-} from './camera';
+import { TCamera, TCameraList,} from './camera';
 import { Nullable } from 'vitest';
 import { TReviewList } from './review';
 import { OrderType, SortingType } from '../const';

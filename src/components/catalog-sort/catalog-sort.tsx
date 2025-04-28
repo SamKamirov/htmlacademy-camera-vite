@@ -7,7 +7,7 @@ import { setSortingType } from '../../store/action';
 interface TCatalogSortingButton<T> {
   type: T;
   onClick: (type: T) => void;
-};
+}
 
 const CatalogSortTypeButton: FC<TCatalogSortingButton<SortingType>> = ({ type, onClick }) => {
   const isPriceSorting = type === SortingType.ByPrice;
@@ -22,7 +22,7 @@ const CatalogSortTypeButton: FC<TCatalogSortingButton<SortingType>> = ({ type, o
         type="radio"
         id={`sort ${isPriceSorting ? 'Price' : 'Popular'}`}
         name="sort"
-        defaultChecked={isPriceSorting ? true : false}
+        defaultChecked={!!isPriceSorting}
         onClick={handleBtnClick}
       />
       <label htmlFor={`sort ${isPriceSorting ? 'Price' : 'Popular'}`}>
@@ -47,9 +47,9 @@ const CatalogOrderButton: FC<TCatalogSortingButton<OrderType>> = ({ type, onClic
         type="radio"
         id={className}
         name="sort-icon"
-        aria-label={isAsc ? "По возрастанию" : "По убыванию"}
+        aria-label={isAsc ? 'По возрастанию' : 'По убыванию'}
         onClick={handleBtnClick}
-        defaultChecked={isAsc ? true : false}
+        defaultChecked={!!isAsc}
       />
       <label htmlFor={className}>
         <svg width={16} height={14} aria-hidden="true">

@@ -9,13 +9,13 @@ import { sortCameras } from './lib';
 
 export const Catalog = () => {
   const cameras = useAppSelector(getCameras);
-  const sorting = useAppSelector(getSorting)
+  const sorting = useAppSelector(getSorting);
 
   if (!cameras) {
     return <Loading />;
   }
 
-  const sortedCameras = sortCameras([...cameras], sorting)
+  const sortedCameras = sortCameras([...cameras], sorting);
 
   return (
     <section className="catalog">

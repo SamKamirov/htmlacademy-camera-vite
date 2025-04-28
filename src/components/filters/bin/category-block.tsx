@@ -18,7 +18,7 @@ export const CategoryBlock = () => {
         type='radio'
         title={TCameraCategory.Photocamera}
         value={TCameraCategory.Photocamera}
-        name="category"
+        name='category'
       />
       <FilterInput
         type='radio'

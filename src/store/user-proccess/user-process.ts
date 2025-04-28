@@ -5,11 +5,14 @@ import {
   setCameraTypeFilter,
   setCategoryFilter,
   setLevelFilter,
+  setMaxPriceFilter,
+  setMinPriceFilter,
   setPriceFilter,
   setSortingType,
 } from '../action';
 import { UserProccessInitialState } from '../../types/state';
 import { fetchCameras } from '../../api/api-actions';
+import { setMaxPrice, setMinPrice } from '../../services/price';
 
 const initialState: UserProccessInitialState = {
   sorting: {
@@ -37,6 +40,12 @@ const userProccess = createSlice({
       })
       .addCase(setPriceFilter, (state, action) => {
         state.filters.priceFilter = action.payload;
+      })
+      .addCase(setMinPriceFilter, (state, action) => {
+        state.filters.priceFilter.minPrice = action.payload;
+      })
+      .addCase(setMaxPriceFilter, (state, action) => {
+        state.filters.priceFilter.maxPrice = action.payload;
       })
       .addCase(setCategoryFilter, (state, action) => {
         state.filters.equipmentFilters.category = action.payload;
@@ -67,6 +76,9 @@ const userProccess = createSlice({
       .addCase(fetchCameras.fulfilled, (state, action) => {
         const cameraWithMinPrice = action.payload.reduce((min, item) => item.price < min.price ? item : min);
         const cameraWithMaxPrice = action.payload.reduce((max, item) => item.price > max.price ? item : max);
+
+        setMinPrice(cameraWithMinPrice.price.toString());
+        setMaxPrice(cameraWithMaxPrice.price.toString());
 
         state.filters.priceFilter = {minPrice: cameraWithMinPrice.price, maxPrice: cameraWithMaxPrice.price};
       });

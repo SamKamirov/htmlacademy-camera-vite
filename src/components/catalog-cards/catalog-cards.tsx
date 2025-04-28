@@ -10,14 +10,14 @@ type TCatalogCards = {
 };
 
 export const CatalogCards: FC<TCatalogCards> = ({ cameras }) => {
-	const filters = useAppSelector(getFilters);
-	const filteredCameras = applyFilters({ cameras, filters });
+  const filters = useAppSelector(getFilters);
+  const filteredCameras = applyFilters({ cameras, filters });
 
-	return (
-		<div className='cards catalog__cards'>
-			{filteredCameras.map((camera) => (
-				<ProductCard camera={camera} key={camera.id} />
-			))}
-		</div>
-	);
+  return (
+    <div className='cards catalog__cards'>
+      {filteredCameras.map((camera) => (
+        <ProductCard camera={camera} key={camera.id} />
+      ))}
+    </div>
+  );
 };

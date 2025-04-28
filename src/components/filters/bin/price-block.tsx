@@ -1,7 +1,7 @@
-import { ChangeEventHandler, FormEventHandler, useEffect, useRef, useState } from 'react';
+import { ChangeEventHandler, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { getPriceFilter } from '../../../store/user-proccess/user-proccess-selectors';
-import { setPriceFilter } from '../../../store/action';
+import { setPriceFilter} from '../../../store/action';
 
 const TIMER_DELAY = 400;
 
@@ -24,7 +24,7 @@ export const PriceBlock = () => {
 
   useEffect(() => {
     const timerId = setTimeout(() => {
-      if (minStatePrice && maxStatePrice && maxStatePrice < minStatePrice) {
+      if (minStatePrice && maxStatePrice && (maxStatePrice < minStatePrice)) {
         setMaxPrice(minStatePrice);
         setMinPrice(maxStatePrice);
       } else {
@@ -33,7 +33,7 @@ export const PriceBlock = () => {
     }, TIMER_DELAY);
 
     return () => clearTimeout(timerId);
-  }, [minPrice, maxPrice, setMaxPrice, setMinPrice, dispatch, minStatePrice, maxStatePrice]);
+  }, [setMaxPrice, setMinPrice, dispatch, minStatePrice, maxStatePrice]);
 
   return (
     <fieldset className='catalog-filter__block'>
@@ -56,7 +56,7 @@ export const PriceBlock = () => {
               type='number'
               name='priceUp'
               placeholder='до'
-              value={minStatePrice}
+              value={maxStatePrice}
               onChange={handleMaxPriceChange}
             />
           </label>

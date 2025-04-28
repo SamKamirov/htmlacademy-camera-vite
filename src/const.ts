@@ -10,8 +10,8 @@ export enum PageType {
 }
 
 export const PageImageProps = {
-	Main: { width: 280, height: 240 },
-	Product: { width: 560, height: 480 },
+  Main: { width: 280, height: 240 },
+  Product: { width: 560, height: 480 },
 };
 
 export const SERVER_URL = 'https://camera-shop.accelerator.htmlacademy.pro';
@@ -55,7 +55,7 @@ enum Level {
 }
 
 export const Filter = {
-	Category,
-	CameraType,
-	Level,
+  Category,
+  CameraType,
+  Level,
 };
