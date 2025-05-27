@@ -4,9 +4,7 @@ import { setModalIsOpen } from '../../store/action';
 export const CloseModalButton = () => {
   const dispatch = useAppDispatch();
 
-  const onCloseButtonClick = () => {
-    dispatch(setModalIsOpen(false));
-  };
+  const onCloseButtonClick = () => dispatch(setModalIsOpen(false));
 
   return (
     <button className="cross-btn" type="button" aria-label="Закрыть попап" onClick={onCloseButtonClick}>

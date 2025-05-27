@@ -9,7 +9,7 @@ export const Main = () => {
   return (
     <>
       <Catalog />
-      {isModalOpen && <Modal isModalOpen={isModalOpen} />}
+      <Modal isModalOpen={isModalOpen} />
     </>
   );
 };
