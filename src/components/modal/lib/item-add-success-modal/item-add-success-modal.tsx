@@ -1,19 +1,14 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../../../const';
 import { useAppDispatch } from '../../../../app/hooks';
-import { setModalIsOpen } from '../../../../store/action';
-import { Dispatch, FC, SetStateAction } from 'react';
+import { setModalIsOpen, setSuccessModalOpen } from '../../../../store/action';
 
-type TItemAddSuccessModal = {
-  setSuccessModalIsOpen: Dispatch<SetStateAction<boolean>>;
-}
-
-export const ItemAddSuccessModal: FC<TItemAddSuccessModal> = ({ setSuccessModalIsOpen }) => {
+export const ItemAddSuccessModal = () => {
   const dispatch = useAppDispatch();
 
   const handleCloseBtnClick = () => {
-    setSuccessModalIsOpen(false);
     dispatch(setModalIsOpen(false));
+    dispatch(setSuccessModalOpen(false));
   };
 
   return (
@@ -26,7 +21,7 @@ export const ItemAddSuccessModal: FC<TItemAddSuccessModal> = ({ setSuccessModalI
         <button className="btn btn--transparent modal__btn" onClick={handleCloseBtnClick}>
           Продолжить покупки
         </button>
-        <Link to={AppRoute.Basket} className="btn btn--purple modal__btn modal__btn--fit-width">
+        <Link to={AppRoute.Card} className="btn btn--purple modal__btn modal__btn--fit-width" onClick={handleCloseBtnClick}>
           Перейти в корзину
         </Link>
       </div>

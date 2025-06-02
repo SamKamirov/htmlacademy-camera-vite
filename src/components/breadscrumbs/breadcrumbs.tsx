@@ -7,6 +7,7 @@ import { checkIsRoot } from '../layout/lib';
 
 const MainBreadcrumb = () => {
   const location = useLocation();
+
   return (
     <li className="breadcrumbs__item" >
       {!checkIsRoot(location.pathname) ?
@@ -46,9 +47,19 @@ const CameraBreadcrumb = () => {
   );
 };
 
+const CardBreadcrumb = () => (
+  <li className="breadcrumbs__item" >
+    <span className="breadcrumbs__link breadcrumbs__link--active">
+      Корзина
+    </span>
+  </li >
+
+);
+
 const routes = [
   { path: AppRoute.Root, breadcrumb: MainBreadcrumb },
   { path: AppRoute.Camera, breadcrumb: CameraBreadcrumb, },
+  { path: AppRoute.Card, breadcrumb: CardBreadcrumb }
 ];
 
 export const Breadcrumbs = () => {

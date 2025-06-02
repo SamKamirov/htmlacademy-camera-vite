@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { SearchBar } from '../search-bar';
+import { HeaderCard } from '../header-basket';
 
 export const Header = () => (
   <header className="header" id="header">
@@ -39,6 +40,7 @@ export const Header = () => (
         </ul>
       </nav>
       <SearchBar />
+      <HeaderCard />
     </div>
   </header>
 );

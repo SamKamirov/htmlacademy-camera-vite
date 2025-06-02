@@ -1,6 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { SliceName, OrderType, SortingType, Filter } from '../../const';
 import {
+  addCardItem,
+  deleteAllItemsById,
+  deleteCardItem,
   resetFilters,
   setCameraTypeFilter,
   setCategoryFilter,
@@ -13,6 +16,9 @@ import {
 import { UserProccessInitialState } from '../../types/state';
 import { fetchCameras } from '../../api/api-actions';
 import { setMaxPrice, setMinPrice } from '../../services/price';
+import { initCardItems } from '../action';
+import { TCamera } from '../../types/camera';
+import { setCard } from '../../services/card';
 
 const initialState: UserProccessInitialState = {
   sorting: {
@@ -27,6 +33,7 @@ const initialState: UserProccessInitialState = {
       level: [],
     },
   },
+  card: []
 };
 
 const userProccess = createSlice({
@@ -80,7 +87,21 @@ const userProccess = createSlice({
         setMinPrice(cameraWithMinPrice.price.toString());
         setMaxPrice(cameraWithMaxPrice.price.toString());
 
-        state.filters.priceFilter = {minPrice: cameraWithMinPrice.price, maxPrice: cameraWithMaxPrice.price};
+        state.filters.priceFilter = { minPrice: cameraWithMinPrice.price, maxPrice: cameraWithMaxPrice.price };
+      })
+      .addCase(addCardItem, (state, action) => {
+        state.card.push(action.payload);
+      })
+      .addCase(initCardItems, (state, action) => {
+        state.card = action.payload;
+      })
+      .addCase(deleteCardItem, (state, action) => {
+        const start = state.card.findIndex((item: TCamera) => item.id === action.payload.id);
+        state.card.splice(start, 1);
+      })
+      .addCase(deleteAllItemsById, (state, action) => {
+        state.card = state.card.filter((item: TCamera) => item.vendorCode !== action.payload);
+        setCard(state.card);
       });
   },
 });

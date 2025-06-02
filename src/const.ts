@@ -1,7 +1,7 @@
 export enum AppRoute {
   Root = '/',
   Camera = 'camera/:id',
-  Basket = 'basket',
+  Card = 'card',
   Everything = '*',
 }
 
@@ -16,8 +16,8 @@ export const PageImageProps = {
 };
 
 export const SERVER_URL = 'https://camera-shop.accelerator.htmlacademy.pro';
-
 export const TOKEN_NAME = 'x-token';
+export const CARD_NAME = 'card';
 
 export enum SliceName {
   AppData = 'AppData',

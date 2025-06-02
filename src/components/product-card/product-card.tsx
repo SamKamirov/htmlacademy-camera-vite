@@ -7,6 +7,8 @@ import { useAppDispatch } from '../../app/hooks';
 import { setModalIsOpen, setSelectedCamera } from '../../store/action';
 import { Link } from 'react-router-dom';
 import { PageType } from '../../const';
+import { NumericFormat } from 'react-number-format';
+
 
 type TProductCard = {
   camera: TCamera;
@@ -29,11 +31,11 @@ export const ProductCard: FC<TProductCard> = ({ camera }) => {
         <p className="product-card__title">{name}</p>
         <p className="product-card__price">
           <span className="visually-hidden">Цена:</span>
-          {price}
+          <NumericFormat displayType='text' value={price} thousandSeparator=" " />&nbsp;₽
         </p>
       </div>
       <div className="product-card__buttons">
-        <ProductButton onClick={handleProductButtonClick} />
+        <ProductButton cameraId={id} onClick={handleProductButtonClick} />
         <Link className="btn btn--transparent" to={`camera/${id}`}>
           Подробнее
         </Link>

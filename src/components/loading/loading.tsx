@@ -1,7 +1,7 @@
 import './lib/loading.css';
 
 export const Loading = () => (
-  <div>
+  <div className='loading'>
     <div className="sk-folding-cube" role="loader">
       <div className="sk-cube1 sk-cube"></div>
       <div className="sk-cube2 sk-cube"></div>

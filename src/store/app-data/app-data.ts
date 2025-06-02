@@ -2,14 +2,15 @@ import { createSlice } from '@reduxjs/toolkit';
 import { SliceName } from '../../const';
 import { fetchCamera, fetchCameraReviews, fetchCameras } from '../../api/api-actions';
 import { InitialState } from '../../types/state';
-import { setModalIsOpen, setSelectedCamera } from '../action';
+import { setModalIsOpen, setSelectedCamera, setSuccessModalOpen } from '../action';
 
 const initialState: InitialState = {
   cameras: null,
   isLoading: false,
   isModalOpen: false,
+  isSuccessModalOpen: false,
   selectedCamera: null,
-  cameraReviews: null
+  cameraReviews: null,
 };
 
 const appData = createSlice({
@@ -32,6 +33,9 @@ const appData = createSlice({
       })
       .addCase(setModalIsOpen, (state, action) => {
         state.isModalOpen = action.payload;
+      })
+      .addCase(setSuccessModalOpen, (state, action) => {
+        state.isSuccessModalOpen = action.payload;
       })
       .addCase(setSelectedCamera, (state, action) => {
         state.selectedCamera = action.payload;

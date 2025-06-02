@@ -4,12 +4,13 @@ import { Footer } from '../footer';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { getIsModalOpen } from '../../store/app-data/app-data-selectors';
-import { setModalIsOpen } from '../../store/action';
+import { setModalIsOpen, setSuccessModalOpen } from '../../store/action';
 import { checkIsRoot } from './lib';
 import { Breadcrumbs } from '../breadscrumbs';
 import { Banner } from '../banner';
 import { UpBtnComponent } from '../up-btn-component';
 import { Toast } from '../toast';
+import { Modal } from '../modal';
 
 export const Layout = () => {
   const location = useLocation();
@@ -20,6 +21,7 @@ export const Layout = () => {
   const handleEscClick = (evt: KeyboardEvent) => {
     if (evt.key === 'Escape') {
       dispatch(setModalIsOpen(false));
+      dispatch(setSuccessModalOpen(false));
     }
   };
 
@@ -27,6 +29,7 @@ export const Layout = () => {
     const target = evt.target as HTMLElement;
     if (target.closest('.modal__overlay')) {
       dispatch(setModalIsOpen(false));
+      dispatch(setSuccessModalOpen(false));
     }
   };
 
@@ -52,6 +55,7 @@ export const Layout = () => {
         <div className='page-content'>
           <Breadcrumbs />
           <Outlet />
+          <Modal isModalOpen={isModalOpen} />
         </div>
       </main>
       {!checkIsRoot(location.pathname) && <UpBtnComponent />}
